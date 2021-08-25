@@ -1,6 +1,24 @@
 const Sauce = require('../models/Sauce');
 const fs = require('fs');
 
+exports.likeSauce = (req, res, next) => {
+    const likeValue = req.body.like;
+    const user = req.body.userId;
+    console.log(likeValue)
+    Sauce.updateOne({ _id: req.params.id }, {...likes, _id: req.params.id})
+      .then(sauce => {
+// Si le user like ou dislike la sauce, il faut faire une MAJ sur la base de donnée -> Nombre de likes dislikes && users qui ont likes dislikes
+// 3 cas possibles => likes.like == 1 (Likes)/ likes.like == 0 (Rien selectionné) / likes.like == -1 (Dislikes)
+        if(likes.like === 1) {
+
+        } else if(likes.like === -1) {
+
+        } else {
+
+        }
+      })
+      .catch(error => res.status(400).json({ error }));
+}
 
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
