@@ -1,20 +1,22 @@
 const express = require('express'); 
-const bodyParser = require('body-parser');
+const helmet = require('helmet');
 const mongoose = require('mongoose');
 const path = require('path');
+require('dotenv').config();
 
 const sauceRoutes = require('./routes/sauces');
 
 const userRoutes = require('./routes/user'); 
 
 
-mongoose.connect('mongodb+srv://Flyern1706:Kl98o6ng2O@cluster0.jjoxo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
+mongoose.connect( process.env.LOGIN_MONGODB,
+  { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 const app = express();
+
+app.use(helmet());
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,7 +25,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 

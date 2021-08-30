@@ -6,8 +6,6 @@ exports.likeSauce = (req, res, next) => {
     const likes = req.body.like;
     const userId = req.body.userId;
     console.log(req.body)
-    // Creer un nouvel objet Sauce avec les différents ajouts => Faire le switch ici
-    // const sauce = new Sauce({})
     Sauce.findOne({ _id: req.params.id })
       .then(sauce => {
         switch(likes) { 
@@ -40,7 +38,6 @@ exports.likeSauce = (req, res, next) => {
           }
       })
       .catch(error => res.status(500).json({ error }));
-
 }
 
 exports.createSauce = (req, res, next) => {
