@@ -5,7 +5,6 @@ const fs = require('fs');
 exports.likeSauce = (req, res, next) => {
     const likes = req.body.like;
     const userId = req.body.userId;
-    console.log(req.body)
     Sauce.findOne({ _id: req.params.id })
       .then(sauce => {
         switch(likes) { 

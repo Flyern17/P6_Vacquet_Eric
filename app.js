@@ -1,13 +1,11 @@
 const express = require('express'); 
 const helmet = require('helmet');
 const mongoose = require('mongoose');
-const path = require('path');
+const path = require('path'); 
 require('dotenv').config();
 
 const sauceRoutes = require('./routes/sauces');
-
 const userRoutes = require('./routes/user'); 
-
 
 mongoose.connect(`mongodb+srv://${process.env.USER_DB}:${process.env.PASSWORD_DB}@${process.env.HOST_DB}/${process.env.NAME_DB}`,
   { useNewUrlParser: true, useUnifiedTopology: true })
